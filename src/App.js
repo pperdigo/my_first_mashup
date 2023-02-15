@@ -1,7 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
+import app from './Qlik/QlikConnection'
 
 function App() {
+
+  app.then( app => {
+    console.log('Aplicativo importado:', app)
+  })
+
   return (
     <div className="App">
       <header className="App-header">
