@@ -38,7 +38,6 @@ async function login() {
     });
 }
 
-
 export default new Promise((resolve) => {
     login().then(() => {
         window.require.config({

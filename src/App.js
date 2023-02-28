@@ -1,29 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
-import app from './Qlik/QlikConnection'
+import appPromise from './Qlik/QlikConnection'
+import Home from './Pages/Home'
+import { useEffect, useState } from 'react';
 
 function App() {
+  const [app, setApp] = useState(undefined)
 
-  app.then( app => {
-    console.log('Aplicativo importado:', app)
-  })
+  useEffect(()=>{
+    appPromise.then((app)=>{
+      setApp(app)
+    })
+  }, [app])
+
+  if(!app) return 'Carregando'
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Home
+        app = {app}>
+      </Home>
     </div>
   );
 }
