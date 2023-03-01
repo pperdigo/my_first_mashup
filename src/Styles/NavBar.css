@@ -1,0 +1,24 @@
+.nav-bar{
+    height: 60px;
+    display: flex;
+    padding-left: 20px;
+    padding-right: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-title{
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.left-nav-bar{
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+}
+
+.filter-nav-bar{
+    margin-left: auto;
+}

@@ -1,3 +1,25 @@
 .kpi-fundo{
-    color: white
+    color: white;
+    /* padding-left: 50px;
+    padding-right: 50px; */
+}
+
+.kpi-value-row{
+    display: flex;
+}
+
+.kpi-title{
+    font-weight: normal;
+    font-size: 24px;
+}
+
+.kpi-value-row > img{
+    width: 65px;
+    height: 65px;
+}
+.kpi-value-text{
+    font-size: 32px;
+    font-weight: bolder;
+    flex-grow: 1;
+    align-self: center;
 }

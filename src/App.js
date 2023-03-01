@@ -1,6 +1,6 @@
 import './App.css';
-import appPromise from './Qlik/QlikConnection'
-import Home from './Pages/Home'
+import appPromise from './js/Qlik/QlikConnection'
+import Home from './js/Pages/Home'
 import { useEffect, useState } from 'react';
 
 function App() {
