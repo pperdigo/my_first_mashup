@@ -4,7 +4,7 @@
     padding-left: 20px;
     padding-right: 20px;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 .page-title{
@@ -20,5 +20,15 @@
 }
 
 .filter-nav-bar{
-    margin-left: auto;
+    /* margin-left: auto; */
+}
+
+.logo-nav-bar{
+    top: 12px;
+    position: absolute;
+    left:calc(50% - 100px);
+}
+
+.menu-icon{
+    margin-right: 15px;
 }

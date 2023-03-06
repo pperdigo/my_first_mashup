@@ -69,32 +69,43 @@ function PieChart(props){
         let option = {
             tooltip: {
               trigger: 'item'
-            },
-            legend: {
+            }/*,
+             legend: {
               top: '5%',
-              left: 'center'
-            },
+              left: 'center' 
+            }*/,
+            
+            height:'250px',
             series: [
               {
                 name: props.title,
                 type: 'pie',
                 radius: ['40%', '70%'],
                 avoidLabelOverlap: false,
-                label: {
-                  show: false,
-                  position: 'center'
+                label:{
+                    color:"white",
                 },
+/*                   label: {
+                  show: false,
+                  position: 'center',
+                
+                },   */
                 emphasis: {
-                  label: {
+                    itemStyle: {
+/*                         shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)' */
+                 /*  label: {
                     show: true,
                     fontSize: 40,
-                    fontWeight: 'bold'
+                    fontWeight: 'bold' */
                   }
                 },
                 labelLine: {
-                  show: false
+                  show: true
                 },
                 data: data
+                
               }
             ]
           };
@@ -107,7 +118,7 @@ function PieChart(props){
             <GenericChart
                 app = {props.app}
                 option = {getOption()}
-                title = {props.title}
+                title = {props.title}            
             ></GenericChart>
         )
     }
