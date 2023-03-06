@@ -4,19 +4,19 @@ import { useEffect, useState } from 'react'
 const GenericChart = (props) => {
     const id = "id_" + new Date().getTime() + (Math.random() * 100).toFixed(0)
     const style = props.style || {backgroundColor:'transparent', flex: '1', width:'100%', height: 'calc(50vh - 60px)'};
+    
     const [chart, setChart] = useState(undefined)
 
     //Listener para fazer o resize
     useEffect(()=>{
         const updateDimensions = () => {
-            this.state.myChart.resize();
+            chart?.resize();
         }
-
         window.addEventListener("resize", updateDimensions);
         return ()=>{
             window.removeEventListener("resize", updateDimensions);
         }
-    }, [])
+    }, [chart])
 
     //Inicialização do gráfico
     useEffect(()=>{
@@ -25,16 +25,14 @@ const GenericChart = (props) => {
             if(element){
                 const myChart = echarts.init(element)
                 myChart.setOption(props.option)
+                console.log('GenericChart - setChart', myChart)
                 setChart(myChart)
-                myChart.resize()
+                if(myChart) myChart.resize()
             }
         }
         renderChart()
-
-        // return(()=>{
-        //     if (chart) chart.dispose()
-        // })
-    }, [chart, id, props.option])
+    // eslint-disable-next-line
+    }, [])
 
     //Atualização do gráfico
     useEffect(()=>{
@@ -62,11 +60,11 @@ const GenericChart = (props) => {
             }
         }
 
-
         return ()=>{
             if(chart) chart.off('click')
         }
-    }, [chart, props.app, props.customOnClickFilterFunction])
+    // eslint-disable-next-line
+    }, [chart, props.customOnClickFilterFunction])
 
     return(<div id={id} style={style}></div>)
 }

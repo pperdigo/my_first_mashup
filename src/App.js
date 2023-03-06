@@ -10,7 +10,7 @@ function App() {
     appPromise.then((app)=>{
       setApp(app)
     })
-  }, [app])
+  }, [])
 
   if(!app) return 'Carregando'
 

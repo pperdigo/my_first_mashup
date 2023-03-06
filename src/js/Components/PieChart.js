@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback } from "react"
 import GenericChart from "../echarts/GenericChart"
 
 function PieChart(props){
-    const [data, setData] = useState([])
+    const [data, setData] = useState(undefined)
 
     const getDefs = useCallback(() => {
         const defs = {
@@ -62,7 +62,7 @@ function PieChart(props){
         }
         
         getData()
-    })
+    }, [props.app, getDefs])
 
 
     const getOption = () => {
@@ -102,11 +102,18 @@ function PieChart(props){
           return option
     }
 
-    return(
-        <GenericChart
-            option = {getOption()}
-        ></GenericChart>
-    )
+    if(data){
+        return(
+            <GenericChart
+                app = {props.app}
+                option = {getOption()}
+                title = {props.title}
+            ></GenericChart>
+        )
+    }
+    else {
+        return <div style = {{color: 'white'}}>Carregando</div>
+    }
 }
 
 export default PieChart
