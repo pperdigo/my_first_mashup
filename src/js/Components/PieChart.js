@@ -42,26 +42,46 @@ function PieChart(props){
                 ],
                 qMeasures: [
                     {
+                        
                         qDef:{
                             qDef: getDefs().measure
-                        }
+                        },
+                        qSortBy:{
+                            qSortByNumeric: -1
+                        },
                     }
                 ],
-                qSuppressZero: false,
-                qSuppressMissing: false,
-                qInterColumnSortOrder: [],
+                qSuppressZero: 0,
+                qSuppressMissing: 0,
+                qInterColumnSortOrder: [1,0]
             })
-
             const matrix = reply.layout.qHyperCube.qDataPages[0].qMatrix
-
+            
             let data = matrix.map((row)=>{
                 return {name: row[0].qText, value: row[1].qNum}
             })
 
-            setData(data)
+            return data
+        }
+
+        //Vamos transformar os dados para manter apenas as 10 maiores entradas e agregar o restante em "outros" 
+        const transformData = async(data) => {
+            let others = {name: 'Others', value: 0}
+            let top10 = []
+            data.forEach((row, index) => {
+                if(index < 10){
+                    top10.push(row)
+                } else{
+                    others.value += row.value
+                }
+            });
+            top10.push(others)
+            setData(top10)
         }
         
-        getData()
+        getData().then(extractedData => {
+            transformData(extractedData)
+        })
     }, [props.app, getDefs])
 
 
@@ -70,26 +90,16 @@ function PieChart(props){
             tooltip: {
               trigger: 'item'
             },
-            legend: {
-              top: '5%',
-              left: 'center'
-            },
             series: [
               {
                 name: props.title,
                 type: 'pie',
-                radius: ['40%', '70%'],
+                radius: ['20%', '35%'],
                 avoidLabelOverlap: false,
                 label: {
-                  show: false,
-                  position: 'center'
-                },
-                emphasis: {
-                  label: {
-                    show: true,
-                    fontSize: 40,
-                    fontWeight: 'bold'
-                  }
+                  show: true,
+                  position: 'outside',
+                  color: 'white'
                 },
                 labelLine: {
                   show: false
@@ -98,7 +108,6 @@ function PieChart(props){
               }
             ]
           };
-
           return option
     }
 
