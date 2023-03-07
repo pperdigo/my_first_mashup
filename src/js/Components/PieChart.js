@@ -1,8 +1,9 @@
-import { useEffect, useState, useCallback } from "react"
+import { useEffect, useState, useCallback, useRef } from "react"
 import GenericChart from "../echarts/GenericChart"
 
 function PieChart(props){
     const [data, setData] = useState(undefined)
+    const id = useRef('')
 
     const getDefs = useCallback(() => {
         const defs = {
@@ -60,18 +61,20 @@ function PieChart(props){
             let data = matrix.map((row)=>{
                 return {name: row[0].qText, value: row[1].qNum}
             })
-
+            id.current = reply.id
             return data
         }
 
-        //Vamos manter apenas os valores acima de 30º (1/12 do total). O resto será agregado em others
         const transformData = async(data) => {
             const others = {name: 'Others', value: 0}
             let dataFiltered = []
+
+            //Vamos manter apenas os valores acima de 30º (1/12 do total). O resto será agregado em others
             const totalValue = data.reduce((acum, curr) => acum + curr.value, 0)
-            const minAngle = props.minAngle / 360
-            data.forEach((row, index) => {
-                if(row.value < minAngle * totalValue){
+            const treshold = props.minAngle / 360 * totalValue
+
+            data.forEach((row) => {
+                if(row.value < treshold){
                     others.value += row.value
                 } else{
                     dataFiltered.push(row)
@@ -79,11 +82,18 @@ function PieChart(props){
             });
             dataFiltered.push(others)
             setData(dataFiltered)
+            return id
         }
         
         getData().then(extractedData => {
             transformData(extractedData)
         })
+
+        return ()=> {
+            props.app.destroySessionObject(id.current)
+        }
+        
+        
     }, [props.app, getDefs, props.minAngle])
 
 
