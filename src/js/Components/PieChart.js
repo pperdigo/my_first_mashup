@@ -102,9 +102,10 @@ function PieChart(props){
                   color: 'white'
                 },
                 labelLine: {
-                  show: false
+                  show: true
                 },
                 data: data
+                
               }
             ]
           };
@@ -116,7 +117,7 @@ function PieChart(props){
             <GenericChart
                 app = {props.app}
                 option = {getOption()}
-                title = {props.title}
+                title = {props.title}            
             ></GenericChart>
         )
     }

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 
 const GenericChart = (props) => {
     const id = "id_" + new Date().getTime() + (Math.random() * 100).toFixed(0)
-    const style = props.style || {backgroundColor:'transparent', flex: '1', width:'100%', height: 'calc(50vh - 60px)'};
+    const style = props.style || {backgroundColor:'transparent', flex: '1', width:'100%', height: '100%'};
     
     const [chart, setChart] = useState(undefined)
 

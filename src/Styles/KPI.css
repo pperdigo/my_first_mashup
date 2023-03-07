@@ -6,20 +6,26 @@
 
 .kpi-value-row{
     display: flex;
+    
 }
 
 .kpi-title{
     font-weight: normal;
     font-size: 24px;
+   
 }
 
 .kpi-value-row > img{
     width: 65px;
     height: 65px;
+    align-self: center;
+    margin-right: 15px;
 }
 .kpi-value-text{
-    font-size: 32px;
+    font-size: 100px;
+    text-shadow: 4px 4px 4px rgb(0 0 0 / 25%);
     font-weight: bolder;
     flex-grow: 1;
     align-self: center;
+    /* text-align: left; */
 }

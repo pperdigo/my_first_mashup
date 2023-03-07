@@ -57,13 +57,18 @@ function KPI(props){
 
     return(
         <div className = 'kpi-fundo'>
-            <div className="kpi-title">
-                {props.title}
+            <div className="d-flex justify-content-center">
+                <div className="kpi-title">
+                    {props.title}
+                </div>
             </div>
-            <div className="kpi-value-row">
-                <img alt="" src={getDefs().icon}/>
-                <div className="kpi-value-text">
-                    {data.toLocaleString('pt-BR', {style: 'percent', maximumFractionDigits: 2})}
+
+            <div className="d-flex justify-content-center">
+                <div className="kpi-value-row">
+                    <img alt="" src={getDefs().icon}/>
+                    <div className="kpi-value-text">
+                        {data.toLocaleString('pt-BR', {style: 'percent', maximumFractionDigits: 2})}
+                    </div>
                 </div>
             </div>
         </div>
