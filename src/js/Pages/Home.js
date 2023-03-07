@@ -25,6 +25,7 @@ function Home(props){
                         <PieChart
                             app = {props.app}
                             title = {'By Product Subgroup'}
+                            minAngle = {30}
                         / >
                     </div>
                     <div className='col-4' style={{height:"300px"}}>
@@ -45,6 +46,7 @@ function Home(props){
                         <PieChart
                             app = {props.app}
                             title = {'By State'}                                                      
+                            minAngle = {30}
                         / >
                     </div>
                     <div className='col-4'>
@@ -66,6 +68,7 @@ function Home(props){
                         <PieChart
                             app = {props.app}
                             title = {'By Sales Rep'}
+                            minAngle = {15}
                         / >
                     </div>
                     <div className='col-4'>

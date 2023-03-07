@@ -64,25 +64,27 @@ function PieChart(props){
             return data
         }
 
-        //Vamos transformar os dados para manter apenas as 10 maiores entradas e agregar o restante em "outros" 
+        //Vamos manter apenas os valores acima de 30º (1/12 do total). O resto será agregado em others
         const transformData = async(data) => {
-            let others = {name: 'Others', value: 0}
-            let top10 = []
+            const others = {name: 'Others', value: 0}
+            let dataFiltered = []
+            const totalValue = data.reduce((acum, curr) => acum + curr.value, 0)
+            const minAngle = props.minAngle / 360
             data.forEach((row, index) => {
-                if(index < 10){
-                    top10.push(row)
-                } else{
+                if(row.value < minAngle * totalValue){
                     others.value += row.value
+                } else{
+                    dataFiltered.push(row)
                 }
             });
-            top10.push(others)
-            setData(top10)
+            dataFiltered.push(others)
+            setData(dataFiltered)
         }
         
         getData().then(extractedData => {
             transformData(extractedData)
         })
-    }, [props.app, getDefs])
+    }, [props.app, getDefs, props.minAngle])
 
 
     const getOption = () => {
@@ -90,11 +92,22 @@ function PieChart(props){
             tooltip: {
               trigger: 'item'
             },
+            color: [
+                "#3b49ee",
+                "#89f2f2",
+                "#4191e1",
+                "#2d669d",
+                "#a4d2ff"
+            ],
             series: [
               {
                 name: props.title,
                 type: 'pie',
-                radius: ['20%', '35%'],
+                radius: ['25%', '65%'],
+                itemStyle: {
+                    borderColor: 'rgba(0,9,118,1)',
+                    borderWidth: 8
+                  },
                 avoidLabelOverlap: false,
                 label: {
                   show: true,
@@ -102,7 +115,7 @@ function PieChart(props){
                   color: 'white'
                 },
                 labelLine: {
-                  show: true
+                  show: false
                 },
                 data: data
                 
