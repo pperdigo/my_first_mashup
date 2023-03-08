@@ -26,7 +26,7 @@ function LineChart(props){
 
     useEffect(()=>{
         const getData = async () =>{
-            const reply = await props.app.createCube({
+            props.app.createCube({
                 qInitialDataFetch: [
                     {
                         qHeight: 5000,
@@ -56,24 +56,20 @@ function LineChart(props){
                 qSuppressZero: 0,
                 qSuppressMissing: 0,
                 qInterColumnSortOrder: [0,1]
+            }, reply => {
+                const matrix = reply.qHyperCube.qDataPages[0].qMatrix
+                
+                const data = []
+                const axisData = []
+
+                matrix.forEach((row) => {
+                    axisData.push(row[0].qText)
+                    data.push(row[1].qNum)
+                })
+
+                id.current = reply.id
+                setData({axisData: axisData, data: data})
             })
-
-            console.log(reply.layout.qHyperCube.qDataPages[0].qMatrix)
-
-            const matrix = reply.layout.qHyperCube.qDataPages[0].qMatrix
-            
-            const data = []
-            const axisData = []
-
-            matrix.forEach((row) => {
-                axisData.push(row[0].qText)
-                data.push(row[1].qNum)
-            })
-
-            console.log(axisData, data)
-
-            id.current = reply.id
-            setData({axisData: axisData, data: data})
         }
 
         getData()
