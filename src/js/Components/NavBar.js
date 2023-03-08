@@ -1,7 +1,8 @@
 import menuIcon from '../../img/material-symbols_menu.svg'
-import filterIcon from '../../img/material-symbols_filter-alt.svg'
+/* import filterIcon from '../../img/material-symbols_filter-alt.svg' */
 import logoIcon from '../../img/logo.svg'
 import '../../Styles/NavBar.css'
+import FilterBar from './FilterBar'
 
 function NavBar(){
     return(
@@ -11,7 +12,8 @@ function NavBar(){
                 <span className='page-title'>KPI DASHBOARD</span>
             </div>
             <img alt='' className='logo-nav-bar' src= {logoIcon} />
-            <img alt='' className='filter-nav-bar' src= {filterIcon} />
+            {/* <img alt='' className='filter-nav-bar' src= {filterIcon} /> */}
+            <FilterBar/>
         </div>
     )
 }
