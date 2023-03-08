@@ -12,7 +12,9 @@ function Home(props){
 
     return(
         <>
-            <NavBar />
+            <NavBar 
+            app = {props.app} 
+            />
             <div className = 'container-fluid'>
                 <div className = 'row pb-2 pt-2' style={{height:`${heightRow}`}}>
                     <div className='col-4 pt-5'>

@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import '../../Styles/FilterBar.css'
-/* import QlikObject from './QlikObject'; */
+import QlikObject from './QlikObject';
 import filterIcon from '../../img/material-symbols_filter-alt.svg'
-
 import '../../Styles/NavBar.css'
+/* import CurrentSelections from './CurrentSelections'; */
 
 function FilterBar(props) {
     const [open, setOpen] = useState(false);
@@ -15,11 +15,11 @@ function FilterBar(props) {
     useEffect(() =>{
         window.app = props.app;
         
-    },[props]);
+    },[props.app]);
 
-/*      clearAll(){
+   const clearAll =() =>{
         props.app.clearAll();
-     } */
+     } 
 
     
         return (<div className="custom-font">
@@ -34,16 +34,15 @@ function FilterBar(props) {
 </div>
                 </div>
                 <div className="sidebar-conent">
-{/*                     <CurrentSelections_People app={props.app}></CurrentSelections_People>
-                    <div onClick={clearAll.bind(this)} className="clear-btn">Clear filters</div> */}
+                   {/*  <CurrentSelections app={props.app}></CurrentSelections> */}
+                    <div onClick={() => clearAll()} className="clear-btn">Clear filters</div>
                     <div className="filters">
-                      QlikObject
-{/*                         <QlikObject app={props.app} qlikId={'eSheame'} objectId={'filter-2'}></QlikObject>
+                        <QlikObject app={props.app} qlikId={'eSheame'} objectId={'filter-2'}></QlikObject>
                         <QlikObject app={props.app} qlikId={'dEzPRD'} objectId={'filter-3'}></QlikObject>
                         <QlikObject app={props.app} qlikId={'rpWqb'} objectId={'filter-4'}></QlikObject>
                         <QlikObject app={props.app} qlikId={'EaZg'} objectId={'filter-5'}></QlikObject>
                         <QlikObject app={props.app} qlikId={'FbxPfcu'} objectId={'filter-6'}></QlikObject>
-                        <QlikObject app={props.app} qlikId={'zjnduXK'} objectId={'filter-7'}></QlikObject> */}
+                        <QlikObject app={props.app} qlikId={'zjnduXK'} objectId={'filter-7'}></QlikObject>
                     </div>
                     
                 </div>

@@ -4,7 +4,7 @@ import logoIcon from '../../img/logo.svg'
 import '../../Styles/NavBar.css'
 import FilterBar from './FilterBar'
 
-function NavBar(){
+function NavBar(props){
     return(
         <div className='nav-bar'>
             <div className='left-nav-bar'>
@@ -13,7 +13,9 @@ function NavBar(){
             </div>
             <img alt='' className='logo-nav-bar' src= {logoIcon} />
             {/* <img alt='' className='filter-nav-bar' src= {filterIcon} /> */}
-            <FilterBar/>
+            <FilterBar 
+            app = {props.app}   
+            />
         </div>
     )
 }

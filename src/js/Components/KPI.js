@@ -47,6 +47,8 @@ function KPI(props){
                 qSuppressZero: false,
                 qSuppressMissing: false,
                 qInterColumnSortOrder: [],
+            }, model =>{
+                console.log(model);
             })
 
             const data = reply.layout.qHyperCube.qDataPages[0].qMatrix[0][0].qNum

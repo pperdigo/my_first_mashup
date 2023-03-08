@@ -2,11 +2,13 @@ import { useEffect } from 'react';
 
 
 
+
 function QlikObject(props) {
 
-    useEffect(() =>
+    useEffect(() =>{
+    console.log(props.app)
         props.app.getObject(props.objectId, props.qlikId)
-    ,[props])
+},[props])
     
 
     var height = props.height || 50;
