@@ -10,7 +10,7 @@ function Home(props){
             <NavBar 
             app = {props.app} 
             />
-            <div className = 'container-fluid'>
+            <div className = 'container-fluid mt-4'>
                 <div className = 'row pb-2 pt-2 height-300'>
                     <div className='col-4 pt-5'>
                         <KPI

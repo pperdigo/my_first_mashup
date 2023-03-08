@@ -2,7 +2,7 @@
   /* ===== Colors ===== */
   --body-color:#000976;
   --sidebar-color: #FFF;
-  --primary-color: #3b49ee;
+  --primary-color: #1526dd;
   --text-color2: #fffdfd;
   --primary-color-light: #F6F5FF;
   --toggle-color: #DDD;
@@ -11,6 +11,7 @@
 
 .sidebar-btn{
   cursor: pointer;
+  
 }
 
 
@@ -22,7 +23,7 @@
   right: -330px;
   transition: 0.3s;
   z-index: 2;
-  background-color: var(--body-color);
+  background-color: var(--primary-color);
 
 }
 
@@ -46,7 +47,7 @@ right: 330px;
 
 .top-sidebar{
   height: 50px;
-  background-color: var(--body-color);
+  background-color: var(--primary-color);
   display: flex;
   padding: 15px;
   justify-content: space-between;
@@ -64,19 +65,16 @@ right: 330px;
 
 .clear-btn{
   height: 40px;
-  background-color: #4d4d4d;
+  background-color: #797979;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
   font-weight: 600;
-}
-
-.x-clear-btn{
-  background-color: transparent;
-  border: none;
-  color: #ffffff;
   cursor: pointer;
+  margin-top: 5px;
+  text-shadow: 1px 1px 2px black;
+  font-size: 25px;
 }
 
 
@@ -86,14 +84,7 @@ right: 330px;
 
 }
 
-.filters-items{
-  display: flex;
-  justify-content: space-between;
-  padding: 5px 15px;
-  background-color: #547ebc;
-  color: #ffffff;
-  /* font-weight: 200; */
-}
+
 
 .filters-menu-navigation{
 /*     display: flex;
@@ -135,4 +126,50 @@ right: 330px;
 
 .qv-collapsed-listbox .title-wrapper {
   background-color: var(--text-color);
+}
+
+
+.current-selections{
+  height: 300px;
+  background-color: var(--sidebar-color);
+  overflow: auto;
+  color: black;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 5px;
+  font-weight: 700;
+  text-align: left;
+  font-size: 20px;
+  
+  
+/*     border-color: var(--primary-color);
+  border-style: solid solid none solid; */
+}
+
+
+.filters-items{
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 15px;
+  background-color: var(--primary-color);
+  color: #ffffff;
+  font-weight: 200;
+  font-size: 15px;
+}
+
+.x-clear-btn{
+  background-color: transparent;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+
+.current-title-div{
+  padding: 5px 15px 0px 5px;
+  color:black;
+  font-weight: 700;
+  text-align: left;
+  font-size: 18px;
+
 }

@@ -1,21 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import '../../Styles/FilterBar.css'
 import QlikObject from './QlikObject';
 import filterIcon from '../../img/material-symbols_filter-alt.svg'
+import filterClosedIcon from '../../img/closeFilterbar.svg'
 import '../../Styles/NavBar.css'
-/* import CurrentSelections from './CurrentSelections'; */
+import CurrentSelections from './CurrentSelections'; 
 
 function FilterBar(props) {
     const [open, setOpen] = useState(false);
 
 
-    
-    
-
-    useEffect(() =>{
-        window.app = props.app;
-        
-    },[props.app]);
 
    const clearAll =() =>{
         props.app.clearAll();
@@ -26,15 +20,17 @@ function FilterBar(props) {
 
             <div className="sidebar-btn" onClick={() => {setOpen(!open)}}><img src={filterIcon} alt=""></img></div>
 
-            <div className={open === true ? 'right-sidebar active' : 'right-sidebar'}>
+            <div className={open ? 'right-sidebar active' : 'right-sidebar'}>
                 <div className="top-sidebar">
                     <span>Current selections</span>
-                    <div className="sidebar-btn" onClick={() => {setOpen(!open)}}><img src={filterIcon} alt=""></img>
+                <div className="sidebar-btn" onClick={() => {setOpen(!open)}}><img src={filterClosedIcon} alt=""></img>
 
-</div>
+            </div>
                 </div>
                 <div className="sidebar-conent">
-                    {/* <CurrentSelections app={props.app}></CurrentSelections> */}
+                    <CurrentSelections 
+                        app={props.app}
+                    />
                     <div onClick={() => clearAll()} className="clear-btn">Clear filters</div>
                     <div className="filters">
                         <QlikObject app={props.app} qlikId={'eSheame'} objectId={'filter-2'}></QlikObject>
@@ -50,7 +46,7 @@ function FilterBar(props) {
 
             <div 
             onClick={() => {setOpen(!open)}} 
-            className={open === true ? 'close-right-sidebar active' : 'close-right-sidebar'}>
+            className={open ? 'close-right-sidebar active' : 'close-right-sidebar'}>
 
             </div>
 
