@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect, useState, useRef } from "react"
 import '../../Styles/KPI.css'
 import dollarIcon from '../../img/material-symbols_attach-money.svg'
 import lineIcon from '../../img/tabler_chart-infographic.svg'
@@ -6,6 +6,7 @@ import targetIcon from '../../img/octicon_goal-24.svg'
 
 function KPI(props){
     const [data, setData] = useState([])
+    const id = useRef('')
     
     const getDefs = useCallback(() => {
         const defs = {
@@ -49,10 +50,17 @@ function KPI(props){
             })
 
             const data = reply.layout.qHyperCube.qDataPages[0].qMatrix[0][0].qNum
+
+            id.current = reply.id
             setData(data)
         }
 
         getData()
+        
+        return ()=> {
+            props.app.destroySessionObject(id.current)
+        }
+        
     },[getDefs, props.app])
 
     return(

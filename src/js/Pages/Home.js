@@ -15,21 +15,23 @@ function Home(props){
             <NavBar />
             <div className = 'container-fluid'>
                 <div className = 'row pb-2 pt-2' style={{height:`${heightRow}`}}>
-                    <div className='col-4 pt-5' style={{height:"300px"}}>
+                    <div className='col-4 pt-5'>
                         <KPI
                             app = {props.app}
                             title = {'Margin %'}
                         / >
                     </div>
-                    <div className='col-4 pt-2' style={{height:"300px"}}>
+                    <div className='col-4 pt-2'>
                         <PieChart
                             app = {props.app}
                             title = {'By Product Subgroup'}
+                            minAngle = {30}
                         / >
                     </div>
-                    <div className='col-4' style={{height:"300px"}}>
+                    <div className='col-4'>
                         <LineChart
                             app = {props.app}
+                            title = {'Margin Amount Over Time'}
                         / >
                     </div>
                 </div>
@@ -45,11 +47,13 @@ function Home(props){
                         <PieChart
                             app = {props.app}
                             title = {'By State'}                                                      
+                            minAngle = {30}
                         / >
                     </div>
                     <div className='col-4'>
                         <LineChart
                             app = {props.app}
+                            title = {'Sales Over Time'}
                         / >
                     </div>
                 </div>
@@ -66,11 +70,13 @@ function Home(props){
                         <PieChart
                             app = {props.app}
                             title = {'By Sales Rep'}
+                            minAngle = {15}
                         / >
                     </div>
                     <div className='col-4'>
                         <LineChart
                             app = {props.app}
+                            title = {'Budget Over Time'}
                         / >
                     </div>
                 </div>

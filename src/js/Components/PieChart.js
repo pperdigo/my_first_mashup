@@ -1,8 +1,9 @@
-import { useEffect, useState, useCallback } from "react"
+import { useEffect, useState, useCallback, useRef } from "react"
 import GenericChart from "../echarts/GenericChart"
 
 function PieChart(props){
     const [data, setData] = useState(undefined)
+    const id = useRef('')
 
     const getDefs = useCallback(() => {
         const defs = {
@@ -42,74 +43,102 @@ function PieChart(props){
                 ],
                 qMeasures: [
                     {
+                        
                         qDef:{
                             qDef: getDefs().measure
-                        }
+                        },
+                        qSortBy:{
+                            qSortByNumeric: -1
+                        },
                     }
                 ],
-                qSuppressZero: false,
-                qSuppressMissing: false,
-                qInterColumnSortOrder: [],
+                qSuppressZero: 0,
+                qSuppressMissing: 0,
+                qInterColumnSortOrder: [1,0]
             })
-
             const matrix = reply.layout.qHyperCube.qDataPages[0].qMatrix
-
+            
             let data = matrix.map((row)=>{
                 return {name: row[0].qText, value: row[1].qNum}
             })
+            id.current = reply.id
+            return data
+        }
 
-            setData(data)
+        const transformData = async(data) => {
+            const others = {name: 'Others', value: 0}
+            let dataFiltered = []
+
+            //Vamos manter apenas os valores acima de 30º (1/12 do total). O resto será agregado em others
+            const totalValue = data.reduce((acum, curr) => acum + curr.value, 0)
+            const treshold = props.minAngle / 360 * totalValue
+
+            data.forEach((row) => {
+                if(row.value < treshold){
+                    others.value += row.value
+                } else{
+                    dataFiltered.push(row)
+                }
+            });
+            dataFiltered.push(others)
+            setData(dataFiltered)
+            return id
         }
         
-        getData()
-    }, [props.app, getDefs])
+        getData().then(extractedData => {
+            transformData(extractedData)
+        })
+
+        return ()=> {
+            props.app.destroySessionObject(id.current)
+        }
+        
+        
+    }, [props.app, getDefs, props.minAngle])
 
 
     const getOption = () => {
         let option = {
+            title:{
+                text: props.title,
+                textStyle:{
+                    color: 'white',
+                    fontWeight: 'normal'
+                }
+            },
             tooltip: {
               trigger: 'item'
-            }/*,
-             legend: {
-              top: '5%',
-              left: 'center' 
-            }*/,
-            
-            height:'250px',
+            },
+            color: [
+                "#3b49ee",
+                "#89f2f2",
+                "#4191e1",
+                "#2d669d",
+                "#a4d2ff"
+            ],
             series: [
               {
                 name: props.title,
                 type: 'pie',
-                radius: ['40%', '70%'],
+                radius: ['25%', '65%'],
+                itemStyle: {
+                    borderColor: 'rgba(0,9,118,1)',
+                    borderWidth: 8
+                  },
                 avoidLabelOverlap: false,
-                label:{
-                    color:"white",
-                },
-/*                   label: {
-                  show: false,
-                  position: 'center',
-                
-                },   */
-                emphasis: {
-                    itemStyle: {
-/*                         shadowBlur: 10,
-                        shadowOffsetX: 0,
-                        shadowColor: 'rgba(0, 0, 0, 0.5)' */
-                 /*  label: {
-                    show: true,
-                    fontSize: 40,
-                    fontWeight: 'bold' */
-                  }
+                label: {
+                  show: true,
+                  position: 'outside',
+                  color: 'white'
                 },
                 labelLine: {
-                  show: true
+                  show: false
                 },
                 data: data
                 
               }
             ]
           };
-
           return option
     }
 

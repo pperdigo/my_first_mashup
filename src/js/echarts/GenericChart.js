@@ -25,7 +25,6 @@ const GenericChart = (props) => {
             if(element){
                 const myChart = echarts.init(element)
                 myChart.setOption(props.option)
-                console.log('GenericChart - setChart', myChart)
                 setChart(myChart)
                 if(myChart) myChart.resize()
             }
