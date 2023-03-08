@@ -34,7 +34,7 @@ function FilterBar(props) {
 </div>
                 </div>
                 <div className="sidebar-conent">
-                   {/*  <CurrentSelections app={props.app}></CurrentSelections> */}
+                    {/* <CurrentSelections app={props.app}></CurrentSelections> */}
                     <div onClick={() => clearAll()} className="clear-btn">Clear filters</div>
                     <div className="filters">
                         <QlikObject app={props.app} qlikId={'eSheame'} objectId={'filter-2'}></QlikObject>

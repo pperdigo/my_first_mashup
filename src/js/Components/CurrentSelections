@@ -43,7 +43,7 @@ function CurrentSelections(props){
                                   <div>
                                       {item.values}
                                   </div>
-                                  <button onClick={()=>{clearField(item.field)}} className="x-clear-btn"><i class="fas fa-times"></i></button>
+                                  <button onClick={()=>{clearField(item.field)}} className="x-clear-btn"><img src="" alt="" /></button>
                               </div>
                           </div>
                       </div>
