@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react'
+
 import KPI from '../Components/KPI'
 // import FilterBar from '../Components/FilterBar'
 import LineChart from '../Components/LineChart'
@@ -6,13 +8,17 @@ import PieChart from '../Components/PieChart'
 import '../../Styles/Home.css'
 
 function Home(props){
+    
+    
     const heightRow = "300px"
+
+
 
     return(
         <>
             <NavBar />
             <div className = 'container-fluid'>
-                <div className = 'row pb-2 pt-2' style={{height:`${heightRow}`}}>
+                <div className = 'row pb-2 pt-2 height-300'>
                     <div className='col-4 pt-5'>
                         <KPI
                             app = {props.app}
@@ -34,7 +40,7 @@ function Home(props){
                     </div>
                 </div>
                 <div><hr className = 'breakline'></hr></div>
-                <div className = 'row pb-2 pt-2' style={{height:`${heightRow}`}}>
+                <div className = 'row pb-2 pt-2 height-300'>
                     <div className='col-4 pt-5'>
                         <KPI
                             app = {props.app}
@@ -57,7 +63,7 @@ function Home(props){
                 </div>
                 
                     <div><hr className = 'breakline'></hr></div>
-                <div className = 'row pb-2 pt-2' style={{height:`${heightRow}`}}>
+                <div className = 'row pb-2 pt-2 height-300'>
                     <div className='col-4 pt-5'>
                         <KPI
                             app = {props.app}
