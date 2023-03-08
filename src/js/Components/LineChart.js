@@ -86,20 +86,46 @@ function LineChart(props){
 
     const getOption = () => {
         let option = {
-                xAxis: {
-                    type: 'category',
-                    data: data.axisData
+            title:{
+                text: props.title,
+                textStyle:{
+                    color: 'white',
+                    fontWeight: 'normal'
+                }
+            },
+            xAxis: {
+                type: 'category',
+                data: data.axisData,
+                axisLabel:{
+                    color: 'white'
+                }
+            },
+            yAxis: {
+                type: 'value',
+                axisLabel:{
+                    color: 'white',
+                    formatter: (params) => (params / 1000000).toLocaleString('pt-BR', {maximumFractionDigits: 1})  + ' M'
                 },
-                yAxis: {
-                    type: 'value'
-                },
-                series: [
-                    {
+                scale: true
+                // min: (value) => value.min * 0.9,
+                // max: (value) => value.max * 1.1,
+            },
+            series: [
+                {
                     data: data.data,
-                    type: 'line'
+                    type: 'line',
+                    lineStyle:{
+                        color: '#89F2F2'
+                    },
+                    itemStyle:{
+                        opacity: 0
                     }
-                ]
-            };
+                }
+            ],
+            grid:{
+                left: '15%'
+            }
+        };
           return option
     }
 

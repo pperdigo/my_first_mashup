@@ -99,6 +99,13 @@ function PieChart(props){
 
     const getOption = () => {
         let option = {
+            title:{
+                text: props.title,
+                textStyle:{
+                    color: 'white',
+                    fontWeight: 'normal'
+                }
+            },
             tooltip: {
               trigger: 'item'
             },
