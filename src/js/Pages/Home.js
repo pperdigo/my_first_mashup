@@ -1,22 +1,17 @@
 import KPI from '../Components/KPI'
-// import FilterBar from '../Components/FilterBar'
 import LineChart from '../Components/LineChart'
 import NavBar from '../Components/NavBar'
 import PieChart from '../Components/PieChart'
 import '../../Styles/Home.css'
 
-require('bootstrap/dist/css/bootstrap.min.css')
-
 function Home(props){
-    const heightRow = "300px"
-
     return(
         <>
             <NavBar 
             app = {props.app} 
             />
             <div className = 'container-fluid'>
-                <div className = 'row pb-2 pt-2' style={{height:`${heightRow}`}}>
+                <div className = 'row pb-2 pt-2 height-300'>
                     <div className='col-4 pt-5'>
                         <KPI
                             app = {props.app}
@@ -37,8 +32,8 @@ function Home(props){
                         / >
                     </div>
                 </div>
-                <div><hr className = 'breakline'></hr></div> {/* linha na tela */}
-                <div className = 'row pb-2 pt-2' style={{height:`${heightRow}`}}>
+                <div><hr className = 'breakline'></hr></div>
+                <div className = 'row pb-2 pt-2 height-300'>
                     <div className='col-4 pt-5'>
                         <KPI
                             app = {props.app}
@@ -60,8 +55,8 @@ function Home(props){
                     </div>
                 </div>
                 
-                    <div><hr className = 'breakline'></hr></div> {/* linha na tela */}
-                <div className = 'row pb-2 pt-2' style={{height:`${heightRow}`}}>
+                    <div><hr className = 'breakline'></hr></div>
+                <div className = 'row pb-2 pt-2 height-300'>
                     <div className='col-4 pt-5'>
                         <KPI
                             app = {props.app}

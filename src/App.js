@@ -2,6 +2,7 @@ import './App.css';
 import appPromise from './js/Qlik/QlikConnection'
 import Home from './js/Pages/Home'
 import { useEffect, useState } from 'react';
+require('bootstrap/dist/css/bootstrap.min.css')
 
 function App() {
   const [app, setApp] = useState(undefined)

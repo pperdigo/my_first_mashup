@@ -29,7 +29,7 @@ function KPI(props){
 
     useEffect(()=>{
         const getData = async() => {
-            let reply = await props.app.createCube({
+            props.app.createCube({
                 qInitialDataFetch: [
                     {
                         qHeight: 1,
@@ -47,14 +47,12 @@ function KPI(props){
                 qSuppressZero: false,
                 qSuppressMissing: false,
                 qInterColumnSortOrder: [],
-            }, model =>{
-                console.log(model);
+            }, reply => {
+                const data = reply.qHyperCube.qDataPages[0].qMatrix[0][0].qNum
+
+                id.current = reply.qInfo.qId
+                setData(data)
             })
-
-            const data = reply.layout.qHyperCube.qDataPages[0].qMatrix[0][0].qNum
-
-            id.current = reply.id
-            setData(data)
         }
 
         getData()

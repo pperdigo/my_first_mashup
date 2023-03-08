@@ -2,6 +2,7 @@ import { useEffect, useState, useCallback, useRef } from "react"
 import GenericChart from "../echarts/GenericChart"
 
 function PieChart(props){
+    console.log('pieChart rerender')
     const [data, setData] = useState(undefined)
     const id = useRef('')
 
@@ -27,7 +28,7 @@ function PieChart(props){
     //Busca de dados inicial
     useEffect(()=>{
         const getData = async () => {
-            const reply = await props.app.createCube({
+            props.app.createCube({
                 qInitialDataFetch: [
                     {
                         qHeight: 5000,
@@ -55,14 +56,16 @@ function PieChart(props){
                 qSuppressZero: 0,
                 qSuppressMissing: 0,
                 qInterColumnSortOrder: [1,0]
+            }, reply => {
+                const matrix = reply.qHyperCube.qDataPages[0].qMatrix
+                
+                let data = matrix.map((row)=>{
+                    return {name: row[0].qText, value: row[1].qNum}
+                })
+                id.current = reply.id
+                
+                transformData(data)
             })
-            const matrix = reply.layout.qHyperCube.qDataPages[0].qMatrix
-            
-            let data = matrix.map((row)=>{
-                return {name: row[0].qText, value: row[1].qNum}
-            })
-            id.current = reply.id
-            return data
         }
 
         const transformData = async(data) => {
@@ -85,9 +88,7 @@ function PieChart(props){
             return id
         }
         
-        getData().then(extractedData => {
-            transformData(extractedData)
-        })
+        getData()
 
         return ()=> {
             props.app.destroySessionObject(id.current)
