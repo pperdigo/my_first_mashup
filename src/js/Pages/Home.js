@@ -5,8 +5,6 @@ import NavBar from '../Components/NavBar'
 import PieChart from '../Components/PieChart'
 import '../../Styles/Home.css'
 
-require('bootstrap/dist/css/bootstrap.min.css')
-
 function Home(props){
     const heightRow = "300px"
 
@@ -35,7 +33,7 @@ function Home(props){
                         / >
                     </div>
                 </div>
-                <div><hr className = 'breakline'></hr></div> {/* linha na tela */}
+                <div><hr className = 'breakline'></hr></div>
                 <div className = 'row pb-2 pt-2' style={{height:`${heightRow}`}}>
                     <div className='col-4 pt-5'>
                         <KPI
@@ -58,7 +56,7 @@ function Home(props){
                     </div>
                 </div>
                 
-                    <div><hr className = 'breakline'></hr></div> {/* linha na tela */}
+                    <div><hr className = 'breakline'></hr></div>
                 <div className = 'row pb-2 pt-2' style={{height:`${heightRow}`}}>
                     <div className='col-4 pt-5'>
                         <KPI
