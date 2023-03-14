@@ -18,14 +18,16 @@ function FilterBar(props) {
     
         return (<div className="custom-font">
 
-            <div className="sidebar-btn" onClick={() => {setOpen(!open)}}><img src={filterIcon} alt=""></img></div>
+            <div className="sidebar-btn" onClick={() => {setOpen(!open)}}>
+                <img src={filterIcon} alt=""></img>
+            </div>
 
             <div className={open ? 'right-sidebar active' : 'right-sidebar'}>
                 <div className="top-sidebar">
                     <span>Current selections</span>
-                <div className="sidebar-btn" onClick={() => {setOpen(!open)}}><img src={filterClosedIcon} alt=""></img>
-
-            </div>
+                    <div className="sidebar-btn" onClick={() => {setOpen(!open)}}>
+                        <img src={filterClosedIcon} alt=""></img>
+                    </div>
                 </div>
                 <div className="sidebar-conent">
                     <CurrentSelections 
